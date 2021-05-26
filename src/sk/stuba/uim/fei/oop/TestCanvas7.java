@@ -4,48 +4,34 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Objects;
 
-public class TestCanvas7 extends Canvas implements MouseMotionListener, MouseListener {
+public class TestCanvas7 extends Canvas  {
 
-    public TestCanvas7(){
-        addMouseListener(this);
-        addMouseMotionListener(this);
-    }
-    //stlaci a spusti na tom istom mieste
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        System.out.println(e);
-    }
+    public HashSet<Rectangle> our_objects = new HashSet<Rectangle>();
 
-    //vzdy ked sa mys stlaci
-    @Override
-    public void mousePressed(MouseEvent e) {
-        System.out.println(e);
-        System.out.println("MouseClicked na suradnice" + " (" +e.getX() + "," + e.getY()+")");
+    public void NewObjects(){
+        int i=0;
+        int j=20;
+        while(i<5){
+            our_objects.add(new Rectangle(10,j,20,20));
+            j+=30;
+            i++;
+        }
     }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        System.out.println(e);
+    public void paint(Graphics g){
+        Rectangle arcRec;
+        Iterator it = our_objects.iterator();
+        while(it.hasNext()){
+            Object actual = it.next();
+            if(actual instanceof Rectangle){
+                arcRec = (Rectangle) actual;
+                g.drawRect(arcRec.x, arcRec.y, arcRec.width, arcRec.height);
+            }
+        }
     }
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        System.out.println(e);
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        System.out.println(e);
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        System.out.println("Som stlacena a hybem sa ("+e.getX()+","+e.getY()+")");
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        System.out.println("Hybem sa ("+e.getX()+","+e.getY()+")");
-    }
 }
