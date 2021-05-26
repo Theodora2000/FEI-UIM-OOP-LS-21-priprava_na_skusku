@@ -8,18 +8,15 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class TestCanvas7 extends Canvas  {
+public class TestCanvas7 extends Canvas implements MouseListener {
 
+    public RectangleButton7 gombik;
     public HashSet<Rectangle> our_objects = new HashSet<Rectangle>();
 
-    public void NewObjects(){
-        int i=0;
-        int j=20;
-        while(i<5){
-            our_objects.add(new Rectangle(10,j,20,20));
-            j+=30;
-            i++;
-        }
+    public TestCanvas7(RectangleButton7 gombik){
+        super();
+        addMouseListener(this);
+        this.gombik = gombik;
     }
 
     public void paint(Graphics g){
@@ -28,4 +25,32 @@ public class TestCanvas7 extends Canvas  {
 
     }
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(gombik.wannaRect){
+        our_objects.add(new Rectangle(e.getX(),e.getY(),20,20));
+        repaint();
+        gombik.wannaRect=false;
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }
