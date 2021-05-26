@@ -23,15 +23,9 @@ public class TestCanvas7 extends Canvas  {
     }
 
     public void paint(Graphics g){
-        Rectangle arcRec;
-        Iterator it = our_objects.iterator();
-        while(it.hasNext()){
-            Object actual = it.next();
-            if(actual instanceof Rectangle){
-                arcRec = (Rectangle) actual;
+        for(Rectangle arcRec : our_objects)
                 g.drawRect(arcRec.x, arcRec.y, arcRec.width, arcRec.height);
-            }
-        }
+
     }
 
 }
