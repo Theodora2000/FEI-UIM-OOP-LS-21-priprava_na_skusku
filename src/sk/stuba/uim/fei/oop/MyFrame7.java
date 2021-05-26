@@ -15,6 +15,8 @@ public class MyFrame7 extends JFrame {
         add(BorderLayout.CENTER, can);
         setSize(300,300);
         setVisible(true);
+        addWindowListener(new Closer7());
+
 
     }
 }
