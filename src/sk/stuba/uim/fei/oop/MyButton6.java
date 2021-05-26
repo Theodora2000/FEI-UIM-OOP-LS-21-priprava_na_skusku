@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MyButton extends JButton implements ActionListener {
+public class MyButton6 extends JButton implements ActionListener {
 
     int pocet = 0;
-    public MyButton(String label){
+    public MyButton6(String label){
         super(label);
         pocet = 0;
         addActionListener(this);
