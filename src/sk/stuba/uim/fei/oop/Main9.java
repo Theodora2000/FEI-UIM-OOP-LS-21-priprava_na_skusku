@@ -5,14 +5,10 @@ import java.io.File;
 public class Main9 {
     public static void main(String args[]){
 
-        String meno_suboru = ZKlavesnice.readString("Zadaj meno suboru: ");
-        File file = new File(meno_suboru);//objekt typu  file
-
-        if(file.exists() && !file.isDirectory()){
-            System.out.println("Subor " + file.getName() + " bol najdeni");
-            System.out.println("Cela cesta " + file.getAbsolutePath());
-        }else{
-            System.out.println("Nenasiel som");
+        File dir = new File("C:\\Users\\WIN10\\Desktop\\FEI\\4.semeter\\OOP\\Priprava na skusku\\FEI-UIM-OOP-LS-21-priprava_na_skusku\\src\\sk\\stuba\\uim\\fei\\oop");
+        String[] list = dir.list();
+        for(int i=0;i<list.length;i++){
+            System.out.println(list[i]);
         }
     }
 }
