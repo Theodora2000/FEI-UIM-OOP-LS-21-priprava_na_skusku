@@ -9,10 +9,10 @@ import java.awt.event.WindowEvent;
 
 public class TestFrame8 extends JFrame implements ItemListener {
 
-    JRadioButton one;
-    JRadioButton two;
-    JTextField in;
-    ButtonGroup bg;
+    List zoznam;
+    Choice rozbalovacie_volby;
+    String polozky_pre_zoznam[]={"jablko", "hruska", "cersna","melon"};
+    String polozky_pre_rozbalovac[]={"apple", "pear", "cherry","waterlemon"};
 
     public TestFrame8(){
 
@@ -21,21 +21,23 @@ public class TestFrame8 extends JFrame implements ItemListener {
         setSize(500,400);
         setLayout(new BorderLayout());
 
-        bg = new ButtonGroup();
+        rozbalovacie_volby = new Choice();
+        rozbalovacie_volby.addItemListener(this);
 
-        one = new JRadioButton("one");
-        one.addItemListener(this);
-        add(BorderLayout.NORTH,one);
-        bg.add(one);
+        zoznam = new List();
+        zoznam.addItemListener(this);
 
-        two = new JRadioButton("two", true);
-        two.addItemListener(this);
-        add(BorderLayout.CENTER,two);
-        bg.add(two);
+        for(int i=0;i<polozky_pre_rozbalovac.length;i++){
+            rozbalovacie_volby.add(polozky_pre_rozbalovac[i]);
+        }
 
-        in = new JTextField();
-        add(BorderLayout.SOUTH, in);
-        in.setText("One is " +one.isSelected()+", two is "+two.isSelected()+".");
+        for(int i=0;i<polozky_pre_zoznam.length;i++){
+            zoznam.add(polozky_pre_zoznam[i]);
+        }
+
+        add(BorderLayout.CENTER, zoznam);
+        add(BorderLayout.SOUTH, rozbalovacie_volby);
+
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -51,12 +53,11 @@ public class TestFrame8 extends JFrame implements ItemListener {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if(e.getSource() == one){
-            in.setText("One was changed and is " +one.isSelected()+", two is "+two.isSelected()+".");
+        if(e.getSource() == rozbalovacie_volby){
+            zoznam.select(rozbalovacie_volby.getSelectedIndex());
         }
-        else if(e.getSource()  == two){
-            in.setText("Two was changed and is " +two.isSelected()+", one is "+one.isSelected()+".");
-
+        else if(e.getSource()  == zoznam){
+            rozbalovacie_volby.select(zoznam.getSelectedIndex());
         }
     }
 }
