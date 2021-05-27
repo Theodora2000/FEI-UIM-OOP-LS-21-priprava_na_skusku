@@ -9,9 +9,10 @@ import java.awt.event.WindowEvent;
 
 public class TestFrame8 extends JFrame implements ItemListener {
 
-    JCheckBox one;
-    JCheckBox two;
+    JRadioButton one;
+    JRadioButton two;
     JTextField in;
+    ButtonGroup bg;
 
     public TestFrame8(){
 
@@ -20,13 +21,17 @@ public class TestFrame8 extends JFrame implements ItemListener {
         setSize(500,400);
         setLayout(new BorderLayout());
 
-        one = new JCheckBox("one", true);
+        bg = new ButtonGroup();
+
+        one = new JRadioButton("one");
         one.addItemListener(this);
         add(BorderLayout.NORTH,one);
+        bg.add(one);
 
-        two = new JCheckBox("two", true);
+        two = new JRadioButton("two", true);
         two.addItemListener(this);
         add(BorderLayout.CENTER,two);
+        bg.add(two);
 
         in = new JTextField();
         add(BorderLayout.SOUTH, in);
